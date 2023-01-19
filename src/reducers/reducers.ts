@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux';
-import dataReducer from './dataReducer';
+import map, { mapInitialState } from './map';
+
+export interface RootProps {
+  map: mapInitialState;
+}
 
 const rootReducer = combineReducers({
-  data: dataReducer
+  map
 });
 
 export default rootReducer;

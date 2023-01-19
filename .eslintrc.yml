@@ -26,4 +26,8 @@ rules:
     "@typescript-eslint/semi": [2, "always"],
     "@typescript-eslint/member-delimiter-style": "off",
     "semi": "off",
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "@typescript-eslint/no-unused-expressions": "off",
+    "@typescript-eslint/no-confusing-void-expression": "off",
   }
