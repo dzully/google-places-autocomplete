@@ -25,4 +25,5 @@ rules:
     generator-star-spacing: "off",
     "@typescript-eslint/semi": [2, "always"],
     "@typescript-eslint/member-delimiter-style": "off",
+    "semi": "off",
   }
