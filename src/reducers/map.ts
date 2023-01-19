@@ -1,20 +1,22 @@
-import { PATCH_MAP_PROPS } from '../actions';
+import { UPDATE_MAP_SUCCESS } from '../actions/map';
 import { actionProps } from '../interface/reducers';
 
 export interface mapInitialState {
   map: unknown;
+  test: string;
 }
 
 const initialState: mapInitialState = {
-  map: null
+  map: null,
+  test: ''
 };
 
 export default function mapReducer(state = initialState, action: actionProps) {
   switch (action.type) {
-    case PATCH_MAP_PROPS:
+    case UPDATE_MAP_SUCCESS:
       return {
         ...state,
-        map: action.data
+        map: action.map
       };
 
     default:

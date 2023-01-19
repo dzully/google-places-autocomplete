@@ -2,3 +2,4 @@
 
 declare module 'axios';
 declare module '*.css';
+declare module 'redux-observable-utils';

@@ -1,7 +1,7 @@
 import { useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { handleMapProps } from '../thunks/map';
 import { RootProps } from '../reducers/reducers';
+import { patchMapProps } from '../actions/map';
 
 const mapOption = {
   center: { lat: -34.397, lng: 150.644 },
@@ -13,6 +13,7 @@ const MapView = () => {
   const dispatch = useDispatch();
   const ref = useRef<HTMLDivElement>(null);
   const map = data.map;
+  console.log({ data });
 
   useEffect(() => {
     if (!map) {
@@ -21,7 +22,7 @@ const MapView = () => {
         mapOption
       );
 
-      dispatch(handleMapProps({ mapProps: mapContainer }) as never);
+      dispatch(patchMapProps(mapContainer));
     }
   }, [ref, map]);
 

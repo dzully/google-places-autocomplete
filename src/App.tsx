@@ -1,7 +1,7 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import store from './thunks/store';
+import store from './epics/store';
 import Home from './page/Home';
 
 const theme = createTheme({
