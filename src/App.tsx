@@ -1,7 +1,6 @@
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { Provider } from 'react-redux';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import './App.css';
 import store from './thunks/store';
 import Home from './page/Home';
 
@@ -17,7 +16,10 @@ const theme = createTheme({
 
 const App = () => {
   return (
-    <div data-testid="app" className="root">
+    <div
+      data-testid="app"
+      style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}
+    >
       <ThemeProvider theme={theme}>
         <Provider store={store}>
           <BrowserRouter basename="/">

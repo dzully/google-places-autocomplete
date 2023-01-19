@@ -25,7 +25,15 @@ const MapView = () => {
     }
   }, [ref, map]);
 
-  return <div ref={ref} className="root" />;
+  return (
+    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+      <div
+        ref={ref}
+        style={{ position: 'absolute', inset: 0 }}
+        data-testid="mapContainer"
+      />
+    </div>
+  );
 };
 
 export default MapView;
