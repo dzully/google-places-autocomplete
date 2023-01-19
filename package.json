@@ -44,11 +44,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "typescript": "tsc --project tsconfig.json --noEmit",
-    "husky": {
-      "hooks": {
-        "pre-commit": "yarn run lint"
-      }
-    }
+    "lint": "eslint src --color",
+    "prettier": "prettier src -check",
+    "lint-staged": "lint-staged --config lint-staged.js",
+    "husky-install": "husky install"
   },
   "eslintConfig": {
     "extends": [
