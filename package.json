@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.10.5",
+    "@emotion/styled": "^11.10.5",
+    "@googlemaps/react-wrapper": "^1.1.35",
+    "@mui/icons-material": "^5.11.0",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^13.0.0",
     "@testing-library/user-event": "^13.2.1",
@@ -12,7 +16,12 @@
     "@types/react-dom": "^18.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.7.0",
     "react-scripts": "5.0.1",
+    "redux-observable": "^2.0.0",
+    "redux-promise": "^0.6.0",
+    "redux-saga": "^1.2.2",
+    "redux-thunk": "^2.4.2",
     "typescript": "^4.4.2",
     "web-vitals": "^2.1.0"
   },
