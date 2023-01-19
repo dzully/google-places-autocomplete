@@ -1,15 +1,15 @@
-import React from 'react'
-import { render, cleanup } from '@testing-library/react'
-import '@testing-library/jest-dom/extend-expect'
-import App from './App'
+import React from 'react';
+import { render, cleanup } from '@testing-library/react';
+import '@testing-library/jest-dom/extend-expect';
+import App from './App';
 
 describe('<App />', () => {
-  afterEach(cleanup)
+  afterEach(cleanup);
 
   it('renders without crashing', async () => {
-    const { findByTestId } = render(<App />)
-    const app = await findByTestId('app')
+    const { findByTestId } = render(<App />);
+    const app = await findByTestId('app');
 
-    expect(app).toBeInTheDocument()
-  })
-})
+    expect(app).toBeInTheDocument();
+  });
+});
