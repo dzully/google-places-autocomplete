@@ -36,15 +36,15 @@ const Geocoder = () => {
       const handlePlaceChanged = () => {
         infowindow.close();
         marker.setVisible(false);
-
         const place = autocomplete.getPlace();
-        setQuery(place.formatted_address);
-        dispatch(updateSearch(place, map, marker, place.name));
 
         if (!place.geometry?.location) {
           window.alert("No details available for input: '" + place.name + "'");
           return;
         }
+
+        setQuery(place.formatted_address);
+        dispatch(updateSearch(place, map, marker, place.name));
 
         if (place.geometry.viewport) {
           map.fitBounds(place.geometry.viewport);

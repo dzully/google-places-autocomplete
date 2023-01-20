@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootProps } from '../reducers/reducers';
 import { patchMapProps } from '../actions/map';
 
-const mapOption = {
+export const mapOption = {
   center: { lat: -34.397, lng: 150.644 },
   zoom: 8
 };

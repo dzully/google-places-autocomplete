@@ -14,7 +14,6 @@ const History = () => {
 
   const handleSelected = (place: Places) => {
     marker.setVisible(false);
-    console.log('handleSelected');
     if (!place.geometry?.location) {
       window.alert("No details available for input: '" + place.name + "'");
       return;
