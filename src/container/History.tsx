@@ -6,6 +6,7 @@ import { Places } from '../interface/geocoder';
 import { updateSearchQuery } from '../actions/geocoder';
 import { useSearchParams } from 'react-router-dom';
 import withMap from '../utils/withMap';
+import { handleSelectAutocomplete } from '../actions/map';
 
 const History = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -23,16 +24,7 @@ const History = () => {
       return;
     }
 
-    if (place.geometry.viewport) {
-      map.fitBounds(place.geometry.viewport);
-    } else {
-      map.setCenter(place.geometry.location);
-      map.setZoom(17);
-    }
-
-    marker.setPosition(place.geometry.location);
-    marker.setVisible(true);
-
+    handleSelectAutocomplete({ place, map, markerProperties: marker });
     setSearchParams({ place: place.formatted_address });
     dispatch(updateSearchQuery(place.name));
   };

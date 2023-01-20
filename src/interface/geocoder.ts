@@ -21,3 +21,9 @@ export interface Location {
   lat: number;
   lng: number;
 }
+
+export interface handleSelectAutocompleteProps {
+  place: Places;
+  map: any;
+  markerProperties: any;
+}
