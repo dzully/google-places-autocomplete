@@ -4,6 +4,12 @@ A simple project that utilizes Google Maps API and Material-UI to search and dis
 ## Getting Started
 To get started, clone the repository and run the following commands:
 
+## Setup Environment
+To make sure all function work for google services, you must provide the API keys:
+```
+REACT_APP_GOOGLE_MAP_KEY=""
+```
+
 ```
 npm install
 npm start
