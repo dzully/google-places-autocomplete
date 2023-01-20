@@ -9,11 +9,10 @@ const mapOption = {
 };
 
 const MapView = () => {
-  const data = useSelector((state: RootProps) => state.map);
+  const data: any = useSelector((state: RootProps) => state.map);
   const dispatch = useDispatch();
   const ref = useRef<HTMLDivElement>(null);
   const map = data.map;
-  console.log({ data });
 
   useEffect(() => {
     if (!map) {
@@ -24,7 +23,7 @@ const MapView = () => {
 
       dispatch(patchMapProps(mapContainer));
     }
-  }, [ref, map]);
+  }, [ref, map, dispatch]);
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100%' }}>

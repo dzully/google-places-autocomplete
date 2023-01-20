@@ -1,5 +1,7 @@
+import { Places } from './geocoder';
+
 export interface actionProps {
   type: string;
-  data: any;
   map: any;
+  searchHistory: Places[];
 }

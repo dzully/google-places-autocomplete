@@ -14,7 +14,8 @@ settings:
     version: detect
 plugins:
   - react
-  - "no-floating-promise"
+  - no-floating-promise
+  - react-hooks
 rules:
   {
     "@typescript-eslint/no-floating-promises": "off",
@@ -31,4 +32,6 @@ rules:
     "@typescript-eslint/no-unused-expressions": "off",
     "@typescript-eslint/no-confusing-void-expression": "off",
     "@typescript-eslint/restrict-template-expressions": "off",
+    "@typescript-eslint/indent": "off",
+    "react-hooks/exhaustive-deps": 1,
   }
