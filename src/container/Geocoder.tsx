@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/restrict-plus-operands */
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { useState, useEffect, ChangeEvent, useRef } from 'react';
+import { useState, useEffect, ChangeEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootProps } from '../reducers/reducers';
 import SearchTextfield from '../component/SearchTextfield';
@@ -12,7 +12,6 @@ const Geocoder = () => {
   const data = useSelector((state: RootProps) => state?.map);
   const [query, setQuery] = useState('');
   const map: any = data?.map;
-  const rs = useRef();
 
   useEffect(() => {
     if (map) {
@@ -40,7 +39,7 @@ const Geocoder = () => {
 
         const place = autocomplete.getPlace();
         setQuery(place.formatted_address);
-        dispatch(updateSearch(place));
+        dispatch(updateSearch(place, map, marker, place.name));
 
         if (!place.geometry?.location) {
           window.alert("No details available for input: '" + place.name + "'");
@@ -64,13 +63,6 @@ const Geocoder = () => {
           infowindow.open(map, marker);
         }
       };
-
-      map.addListener('center_changed', () => {
-        const place = autocomplete.getPlace();
-        console.log({ place });
-        setQuery(place.formatted_address);
-        dispatch(updateSearch(place));
-      });
 
       autocomplete.addListener('place_changed', handlePlaceChanged);
     }

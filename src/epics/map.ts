@@ -6,10 +6,10 @@ import { UPDATE_MAP, UPDATE_MAP_SUCCESS } from '../actions/map';
 export const fetchDataEpic = (action$: any) => {
   return action$.pipe(
     ofType(UPDATE_MAP),
-    switchMap((action: { map: unknown }) => {
+    switchMap((action: { mapProperties: unknown }) => {
       return of({
         type: UPDATE_MAP_SUCCESS,
-        map: action.map
+        mapProperties: action.mapProperties
       });
     })
   );

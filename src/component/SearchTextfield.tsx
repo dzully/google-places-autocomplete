@@ -22,31 +22,28 @@ const SearchTextfield = ({
   };
 
   return (
-    <div style={{ padding: 10 }}>
-      <Paper
-        component="form"
-        sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
+    <Paper
+      component="form"
+      sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: 400 }}
+    >
+      <InputBase
+        id="pac-input"
+        sx={{ ml: 1, flex: 1 }}
+        placeholder="Search Google Maps"
+        inputProps={{ 'aria-label': 'search google maps' }}
+        onChange={onChange}
+        value={value}
+        onKeyPress={onKeyPress}
+      />
+      <IconButton
+        type="button"
+        sx={{ p: '10px' }}
+        aria-label="search"
+        onClick={onSearch}
       >
-        <InputBase
-          id="pac-input"
-          sx={{ ml: 1, flex: 1 }}
-          placeholder="Search Google Maps"
-          inputProps={{ 'aria-label': 'search google maps' }}
-          onChange={onChange}
-          value={value}
-          onKeyPress={onKeyPress}
-          className="hello"
-        />
-        <IconButton
-          type="button"
-          sx={{ p: '10px' }}
-          aria-label="search"
-          onClick={onSearch}
-        >
-          <SearchIcon />
-        </IconButton>
-      </Paper>
-    </div>
+        <SearchIcon />
+      </IconButton>
+    </Paper>
   );
 };
 

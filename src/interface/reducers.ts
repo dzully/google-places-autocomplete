@@ -2,6 +2,9 @@ import { Places } from './geocoder';
 
 export interface actionProps {
   type: string;
-  map: any;
+  map: unknown;
+  mapProperties: unknown;
+  markerProperties: unknown;
   searchHistory: Places[];
+  searchQuery: string;
 }

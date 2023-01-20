@@ -3,5 +3,5 @@ export const UPDATE_MAP = 'UPDATE_MAP';
 
 export const patchMapProps = (map: unknown) => ({
   type: UPDATE_MAP,
-  map
+  mapProperties: map
 });
