@@ -19,3 +19,17 @@ export const updateSearch = (
     searchQuery: query
   };
 };
+
+export const updateMarker = (marker: unknown) => {
+  return {
+    type: UPDATE_MARKER_PROPERTIES,
+    markerProperties: marker
+  };
+};
+
+export const updateSearchQuery = (query: unknown) => {
+  return {
+    type: UPDATE_SEARCH_QUERY,
+    searchQuery: query
+  };
+};

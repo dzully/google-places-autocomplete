@@ -6,9 +6,14 @@ import { Places } from '../interface/geocoder';
 interface HistoryListProps {
   handleSelected?: (param: Places) => void;
   value?: Places;
+  currentSelected?: string;
 }
 
-const HistoryList = ({ handleSelected, value }: HistoryListProps) => {
+const HistoryList = ({
+  handleSelected,
+  value,
+  currentSelected
+}: HistoryListProps) => {
   const onHandleSelected = () => {
     if (handleSelected && value) {
       handleSelected(value);
@@ -17,7 +22,10 @@ const HistoryList = ({ handleSelected, value }: HistoryListProps) => {
 
   return (
     <ListItem disablePadding onClick={onHandleSelected}>
-      <ListItemButton>
+      <ListItemButton
+        selected={value?.formatted_address === currentSelected}
+        style={{ borderRadius: 2 }}
+      >
         <ListItemText primary={value?.name} />
       </ListItemButton>
     </ListItem>
@@ -26,7 +34,8 @@ const HistoryList = ({ handleSelected, value }: HistoryListProps) => {
 
 HistoryList.defaultProps = {
   handleSelected: undefined,
-  value: undefined
+  value: undefined,
+  currentSelected: undefined
 };
 
 export default HistoryList;

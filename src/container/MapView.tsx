@@ -2,6 +2,7 @@ import { useRef, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootProps } from '../reducers/reducers';
 import { patchMapProps } from '../actions/map';
+import { google } from './Geocoder';
 
 export const mapOption = {
   center: { lat: -34.397, lng: 150.644 },
@@ -16,11 +17,7 @@ const MapView = () => {
 
   useEffect(() => {
     if (!map) {
-      const mapContainer = new (window as any).google.maps.Map(
-        ref.current,
-        mapOption
-      );
-
+      const mapContainer = new google.maps.Map(ref.current, mapOption);
       dispatch(patchMapProps(mapContainer));
     }
   }, [ref, map, dispatch]);

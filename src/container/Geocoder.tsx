@@ -4,17 +4,60 @@ import { useState, useEffect, ChangeEvent } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootProps } from '../reducers/reducers';
 import SearchTextfield from '../component/SearchTextfield';
-import { updateSearch } from '../actions/geocoder';
+import { updateMarker, updateSearch } from '../actions/geocoder';
+import { useSearchParams } from 'react-router-dom';
+import withMap from '../utils/withMap';
 
 export const google = (window as any).google;
 const Geocoder = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [initiateAutocomplete, setInitiateAutocomplete] =
+    useState<boolean>(false);
   const dispatch = useDispatch();
   const data = useSelector((state: RootProps) => state?.map);
+  const markerProperties = data?.markerProperties as any;
   const [query, setQuery] = useState('');
   const map: any = data?.map;
 
   useEffect(() => {
-    if (map) {
+    const handleUpdateQuery = () => {
+      const placeQuery = searchParams.get('place') as string;
+
+      if (placeQuery !== query) {
+        const request = {
+          query: placeQuery,
+          fields: ['name', 'geometry']
+        };
+
+        const service = new google.maps.places.PlacesService(map);
+        service.findPlaceFromQuery(
+          request,
+          function (results: any, status: any) {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+              markerProperties.setVisible(false);
+              const place = results[0];
+              if (place.geometry.viewport) {
+                map.fitBounds(place.geometry.viewport);
+              } else {
+                map.setCenter(place.geometry.location);
+                map.setZoom(17);
+              }
+
+              markerProperties.setPosition(place.geometry.location);
+              markerProperties.setVisible(true);
+            }
+          }
+        );
+
+        setQuery(placeQuery);
+      }
+    };
+
+    if (map && markerProperties) handleUpdateQuery();
+  }, [searchParams, map, markerProperties]);
+
+  useEffect(() => {
+    if (!initiateAutocomplete && map) {
       const input = document.getElementById('pac-input');
       const options = {
         fields: ['formatted_address', 'geometry', 'name'],
@@ -32,6 +75,7 @@ const Geocoder = () => {
         map,
         anchorPoint: new google.maps.Point(0, -29)
       });
+      dispatch(updateMarker(marker));
 
       const handlePlaceChanged = () => {
         infowindow.close();
@@ -43,6 +87,7 @@ const Geocoder = () => {
           return;
         }
 
+        setSearchParams({ place: place.formatted_address });
         setQuery(place.formatted_address);
         dispatch(updateSearch(place, map, marker, place.name));
 
@@ -65,8 +110,9 @@ const Geocoder = () => {
       };
 
       autocomplete.addListener('place_changed', handlePlaceChanged);
+      setInitiateAutocomplete(true);
     }
-  }, [dispatch, map]);
+  }, [dispatch, initiateAutocomplete, map, setSearchParams]);
 
   const handleChange = (
     event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -78,4 +124,4 @@ const Geocoder = () => {
   return <SearchTextfield onChange={handleChange} value={query} />;
 };
 
-export default Geocoder;
+export default withMap(Geocoder);
