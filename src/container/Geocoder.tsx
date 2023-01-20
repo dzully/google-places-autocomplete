@@ -17,13 +17,14 @@ const options = {
 
 export const google = (window as any).google;
 const Geocoder = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
   const [initiateAutocomplete, setInitiateAutocomplete] =
     useState<boolean>(false);
   const dispatch = useDispatch();
   const data = useSelector((state: RootProps) => state?.map);
   const markerProperties = data?.markerProperties as any;
   const [query, setQuery] = useState('');
+  console.log(useSearchParams);
+  const [searchParams, setSearchParams] = useSearchParams();
   const map: any = data?.map;
 
   useEffect(() => {
@@ -52,7 +53,10 @@ const Geocoder = () => {
       }
     };
 
-    if (map && markerProperties) handleUpdateQuery();
+    if (map && markerProperties && searchParams.get('place')) {
+      handleUpdateQuery();
+    }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams, map, markerProperties]);
 
