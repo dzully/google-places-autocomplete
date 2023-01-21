@@ -6,7 +6,7 @@ interface MapWrapperProps {
 }
 
 const render = (status: Status) => {
-  return <h1>{status}</h1>;
+  return <h1 data-testid="GoogleMap">{status}</h1>;
 };
 
 const MapWrapper = ({ children }: MapWrapperProps) => {
