@@ -16,6 +16,9 @@ COPY . .
 # Build the application
 RUN yarn run build
 
+# HealthCheck
+HEALTHCHECK --interval=5s --timeout=3s --retries=3 CMD curl -f http://localhost:3000/health || exit 1
+
 # Specify the port that the app will listen on
 EXPOSE 3000
 
